@@ -7,9 +7,16 @@ import { HttpService } from "../http.service";
   styleUrls: ["./list.component.scss"],
 })
 export class ListComponent implements OnInit {
+  breweries: object;
+
   constructor(private _http: HttpService) {}
 
   ngOnInit() {
     this._http.myMethod();
+
+    this._http.getBreweries().subscribe((data) => {
+      this.breweries = data;
+      console.log(this.breweries);
+    });
   }
 }
