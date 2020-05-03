@@ -1,0 +1,53 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
+
+$primary: #ffe75e;
+$secondary: #feb72b;
+$tertiary: #899857;
+$quaternary: #527318;
+
+body {
+  margin: 0;
+  font-family: "Permanent Marker", cursive;
+  font-size: 1rem;
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+header {
+  background: $primary;
+
+  section {
+    display: flex;
+    justify-content: space-between;
+
+    a.logo {
+      margin: auto 0;
+      font-size: 2rem;
+    }
+
+    nav {
+      ul {
+        display: flex;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        li {
+          padding: 1rem;
+          &:hover {
+            background: darken($primary, 10%);
+          }
+        }
+      }
+    }
+  }
+
+  a {
+    color: $quaternary;
+    text-decoration: none;
+  }
+}
