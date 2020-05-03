@@ -1,27 +1,54 @@
 # HelloWorldAngular
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.1.0.
+A simple hello-world single page web app used to learn about Angular 8.
 
-## Development server
+# Objectives
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+- Routed pages using AppRoutingModule and routerLink
+- 1 and 2 way data binding
+- If/Else ngClass and ngStyle to conditionally style ng-templates
+- Dependency injection to utilize service components
+- HttpClient calls to api and subscribing to the results
+- \*ngIf and \*ngFor to map over the api call results if any were returned
 
-## Code scaffolding
+# Includes: 
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- [ANGULAR](https://angular.io/)
+- [SCSS](https://sass-lang.com/)
+- [SERVICES](https://angular.io/tutorial/toh-pt4)
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+# Live site
 
-## Running unit tests
+[LIVE SITE](https://austinparvin-hello-world-angular.netlify.app/)
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+![LADYBUG](https://recordit.co/WhwtRaP1FF/gif/notify)
 
-## Running end-to-end tests
+# Featureed Code
+### Subscribing to api call results then mapping over them
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+```TS
+export class ListComponent implements OnInit {
+  breweries: object;
 
-## Further help
+  constructor(private _http: HttpService) {}
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+  ngOnInit() {
+    this._http.myMethod();
+
+    this._http.getBreweries().subscribe((data) => {
+      this.breweries = data;
+      console.log(this.breweries);
+    });
+  }
+}
+ ```
+ 
+```TSX
+<ul *ngIf="breweries">
+    <li *ngFor="let brewery of breweries">
+        <p class="name">{{ brewery.name }}</p>
+        <p class="country">{{ brewery.state }}, {{ brewery.country }}</p>
+        <a class="site" href="{{brewery.website_url}}">site</a>
+    </li>
+</ul>
