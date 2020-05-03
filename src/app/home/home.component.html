@@ -1,0 +1,41 @@
+<h1>Welcome!</h1>
+
+<!-- One way data binding, just displaying a variable.  Also using the (click) event to call a function to increment clickCounter variable by 1 -->
+<div class="play-container">
+    <p>
+        You've clicked <button (click)="countClick()">this</button> {{clickCounter}} times.
+    </p>
+</div>
+
+<!-- Two-way data binding, if you type in the input the variable will change. Also if the variable changes the input value with change -->
+<div class="play-container">
+    <p>
+        <input type="text" [(ngModel)]="name">
+        <br>
+        <strong>You said:</strong> {{ name }}
+    </p>
+</div>
+
+<!-- using ng-template and if/else logic to show two lines of text based on clickCounter's value -->
+
+<!-- single style property set conditionally -->
+<!-- <div class="play-container" [style.background-color]="clickCounter > 4 ? '#ffe75e' : 'lightgrey'"> -->
+
+<!-- multiple style properties set conditionally -->
+<!-- <div class="play-container" [ngStyle]="{
+    'background-color': clickCounter > 4 ? '#ffe75e' : 'lightgrey',
+    'border':           clickCounter > 4 ? '4px solid black' : 'none'
+
+}"> -->
+
+<!-- using class binding to apply class when condition is met -->
+<!-- <div class="play-container" [class.active]="clickCounter > 4"> -->
+
+<div class="play-container" [ngClass]="setClasses()">
+    <ng-template [ngIf]="clickCounter > 4" [ngIfElse]="none">
+        <p>The click counter is <strong>GREATER</strong> than 4.</p>
+    </ng-template>
+    <ng-template #none>
+        <p>The click counter is <strong>LESS</strong> than 4.</p>
+    </ng-template>
+</div>
